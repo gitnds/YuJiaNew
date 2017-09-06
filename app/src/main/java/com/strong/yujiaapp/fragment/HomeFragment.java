@@ -2,14 +2,19 @@ package com.strong.yujiaapp.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,8 +45,9 @@ public class HomeFragment extends Fragment {
     public Activity mActivity;
     private RelativeLayout ll_1;
     private LinearLayout ll_2, ll_3, ll_4, ll_5, ll_6, ll_7, ll_8, ll_9;
-    private ImageButton btn_call, btn_scan_barcode;
+    private ImageButton btn_call, btn_scan_barcode,btn_pop;
     private EditText et_first_code;
+    private String[] datas = {"签到", "分享"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,6 +68,7 @@ public class HomeFragment extends Fragment {
         et_first_code = view.findViewById(R.id.et_first_code);
 
         btn_scan_barcode = view.findViewById(R.id.btn_scan_barcode);
+        btn_pop = view.findViewById(R.id.btn_pop);
         btn_call = view.findViewById(R.id.btn_call);
 
         initEvent();
@@ -118,6 +125,32 @@ public class HomeFragment extends Fragment {
                 case R.id.btn_call:
                     DialogAg.getPromptDialog(mActivity, "哇偶哇偶哇偶");
                     break;
+                case R.id.btn_pop:
+
+                    // TODO: 2016/5/17 构建一个popupwindow的布局
+                    View popupView = mActivity.getLayoutInflater().inflate(R.layout.popupwindow, null);
+
+                    // TODO: 2016/5/17 为了演示效果，简单的设置了一些数据，实际中大家自己设置数据即可，相信大家都会。
+                    ListView lsvMore = (ListView) popupView.findViewById(R.id.lsvMore);
+                    lsvMore.setAdapter(new ArrayAdapter<String>(mActivity, android.R.layout.simple_list_item_1, datas));
+
+                    // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
+                    PopupWindow window = new PopupWindow(popupView, 200, 200);
+                    // TODO: 2016/5/17 设置动画
+                    window.setAnimationStyle(R.style.popup_window_anim);
+                    // TODO: 2016/5/17 设置背景颜色
+                    window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F8F8F8")));
+                    // TODO: 2016/5/17 设置可以获取焦点
+                    window.setFocusable(true);
+                    // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
+                    window.setOutsideTouchable(true);
+                    // TODO：更新popupwindow的状态
+                    window.update();
+                    // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
+                    window.showAsDropDown(btn_pop, 0, 20);
+
+
+                    break;
                 default:
                     break;
             }
@@ -137,6 +170,7 @@ public class HomeFragment extends Fragment {
         ll_9.setOnClickListener(new MyClickListener());
         btn_scan_barcode.setOnClickListener(new MyClickListener());
         btn_call.setOnClickListener(new MyClickListener());
+        btn_pop.setOnClickListener(new MyClickListener());
 
     }
 
