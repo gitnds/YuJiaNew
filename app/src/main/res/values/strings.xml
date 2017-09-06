@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">YujiaAPP</string>
+
+    <string name="login">登录</string>
+    <string name="account">账号</string>
+    <string name="password">密码</string>
+    <string name="home">首页</string>
+    <string name="my">我的</string>
+    <string name="compen">理赔服务</string>
+    <string name="lipeishenqing">理赔申请信息</string>
+    <string name="yundannumber">运单号:</string>
+    <string name="yundanpone">运单上电话:</string>
+    <string name="lianxipeple">联系人:</string>
+    <string name="lianxipone">联系人电话:</string>
+    <string name="lipeicity">理赔公司所在城市:</string>
+    <string name="lipeipepleOrCompany">理赔申请人或公司:</string>
+    <string name="goodsname">货物名称:</string>
+    <string name="shigutype">事故类型:</string>
+    <string name="yichang_count">异常件数:</string>
+    <string name="shenqing_account">申请金额:</string>
+    <string name="lipei_reason">理赔原因:</string>
+
+</resources>

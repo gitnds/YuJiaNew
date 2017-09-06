@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.strong.yujiaapp">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+
+    <!-- 扫描 -->
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".LoginActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="zxing.activity.CaptureActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Black.NoTitleBar"/>
+
+        <activity
+            android:name=".LoadActivity"/>
+        <activity
+            android:name=".MainActivity"/>
+        <activity
+            android:name=".activity.OrderActivity"/>
+        <activity
+            android:name=".activity.CargoActivity"/>
+        <activity
+            android:name=".activity.SiteActivity"/>
+        <activity
+            android:name=".activity.PriceActivity"/>
+        <activity
+            android:name=".activity.SendActivity"/>
+        <activity
+            android:name=".activity.ReceiveActivity"/>
+        <activity
+            android:name=".activity.ServiceActivity"/>
+        <activity
+            android:name=".activity.CompensateActivity"/>
+        <activity
+            android:name=".activity.ClaimsActivity"/>
+        <activity
+            android:name=".activity.SiteChoiceActivity"/>
+        <activity
+            android:name=".activity.HumanInfoActivity"/>
+        <activity
+            android:name=".activity.AddInfoActivity"/>
+        <activity
+            android:name=".activity.FeedbackActivity"/>
+        <activity
+            android:name=".activity.FeedAddActivity"/>
+    </application>
+
+</manifest>

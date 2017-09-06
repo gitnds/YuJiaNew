@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    >
+
+    <include layout="@layout/title_compenstate_bar"/>
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_info_s"
+            style="@style/Bottom_tab_style"
+            android:checked="true"
+            android:drawableBottom="@drawable/tab_line_selector"
+            android:text="发货人信息"/>
+
+        <RadioButton
+            android:id="@+id/rb_info_r"
+            style="@style/Bottom_tab_style"
+            android:drawableBottom="@drawable/tab_line_selector"
+            android:text="收货人信息"/>
+
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="asdasd"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+
+</LinearLayout>

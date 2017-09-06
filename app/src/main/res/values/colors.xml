@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="colorBluePeacock">#48D1CC</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorBlack2">#404040</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorGray">#BDBDBD</color>
+    <color name="colorBlackGray">#666666</color>
+    <color name="colorALittleGray">#F0F0F0</color>
+    <color name="transparent">#00000000</color>
+    <color name="deeper_grey">#6a6668</color>
+    <color name="grey">#ffbfbfbf</color>
+
+
+    <color name="result_view">#b0000000</color>
+    <color name="possible_result_points">#c0ffff00</color>
+    <color name="viewfinder_frame">#ff000000</color>
+    <color name="viewfinder_laser">#ffff0000</color>
+    <color name="viewfinder_mask">#60000000</color>
+</resources>
