@@ -2,7 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    >
     <TextView
         android:id="@+id/item_dialog"
         android:layout_height="40dp"
@@ -10,5 +11,9 @@
         android:textColor="#999999"
         android:textSize="14sp"
         android:gravity="center"/>
+    <TextView style="@style/style_horizontal_line_black"
+        android:id="@+id/tv_line"
+        android:layout_marginLeft="6dp"
+        android:layout_marginRight="6dp"/>
 
 </LinearLayout>
