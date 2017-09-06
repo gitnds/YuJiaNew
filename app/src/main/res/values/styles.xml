@@ -103,4 +103,11 @@
         <item name="android:layout_marginRight">@dimen/padding_thiner_width</item>
         <item name="android:singleLine">true</item>
     </style>
+
+
+    <!-- pupupwindow的弹出和消失动画 -->
+    <style name="popup_window_anim">
+        <item name="android:windowEnterAnimation">@anim/in</item>
+        <item name="android:windowExitAnimation">@anim/out</item>
+    </style>
 </resources>
