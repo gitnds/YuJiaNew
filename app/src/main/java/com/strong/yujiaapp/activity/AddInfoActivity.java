@@ -18,7 +18,7 @@ public class AddInfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addinfo);
         getSupportActionBar().hide();
-
+//hfkdjs
         initView();
         initData();
         initEvent();
