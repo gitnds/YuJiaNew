@@ -100,6 +100,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
             case R.id.ll_logout:
                 mIntent = new Intent();
                 mIntent.setClass(mActivity, LoginActivity.class);
+                mIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(mIntent);
                 break;
         }
