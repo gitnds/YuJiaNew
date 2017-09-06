@@ -15,6 +15,7 @@ import com.strong.yujiaapp.LoginActivity;
 import com.strong.yujiaapp.R;
 import com.strong.yujiaapp.activity.FeedbackActivity;
 import com.strong.yujiaapp.activity.HumanInfoActivity;
+import com.strong.yujiaapp.activity.MallActivity;
 import com.strong.yujiaapp.activity.SendActivity;
 
 /**
@@ -24,7 +25,7 @@ import com.strong.yujiaapp.activity.SendActivity;
 public class MyFragment extends Fragment implements View.OnClickListener {
 
     public Activity mActivity;
-    private LinearLayout ll_return, ll_logout;
+    private LinearLayout ll_return, ll_logout,ll_mall;
     private TextView tv_title, tv_myorder, tv_myloc, tv_myset, tv_mymessage, tv_myopinion;
     private Intent mIntent;
 
@@ -44,6 +45,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tv_myset = view.findViewById(R.id.tv_myset);
         tv_mymessage = view.findViewById(R.id.tv_mymessage);
         tv_myopinion = view.findViewById(R.id.tv_myopinion);
+        ll_mall = view.findViewById(R.id.ll_mall);
 
 
         initData();
@@ -66,11 +68,17 @@ public class MyFragment extends Fragment implements View.OnClickListener {
         tv_mymessage.setOnClickListener(this);
         tv_myopinion.setOnClickListener(this);
         ll_logout.setOnClickListener(this);
+        ll_mall.setOnClickListener(this);
 
     }
 
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_mall:
+                mIntent = new Intent();
+                mIntent.setClass(mActivity, MallActivity.class);
+                startActivity(mIntent);
+                break;
             case R.id.tv_myorder:
                 mIntent = new Intent();
                 mIntent.setClass(mActivity, SendActivity.class);
