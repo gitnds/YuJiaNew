@@ -17,13 +17,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorALittleGray"
-        android:orientation="vertical"
-        android:paddingBottom="16dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="16dp">
+        android:orientation="vertical">
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_layout"
@@ -179,8 +176,7 @@
 
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
-                android:switchMinWidth="20dp"
+                android:switchMinWidth="10dp"
                 android:textOn="  "
                 android:textOff="  "
                 android:thumb="@drawable/thumb"
