@@ -6,12 +6,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
@@ -19,6 +21,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shizhefei.view.indicator.BannerComponent;
+import com.shizhefei.view.indicator.Indicator;
+import com.shizhefei.view.indicator.IndicatorViewPager;
+import com.shizhefei.view.indicator.slidebar.ColorBar;
+import com.shizhefei.view.indicator.slidebar.ScrollBar;
 import com.strong.yujiaapp.R;
 import com.strong.yujiaapp.activity.CargoActivity;
 import com.strong.yujiaapp.activity.CompensateActivity;
@@ -43,12 +50,26 @@ import static android.app.Activity.RESULT_OK;
 public class HomeFragment extends Fragment {
 
     public Activity mActivity;
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        bannerComponent.stopAutoPlay();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        bannerComponent.startAutoPlay();
+    }
+
     private RelativeLayout ll_1;
     private LinearLayout ll_2, ll_3, ll_4, ll_5, ll_6, ll_7, ll_8, ll_9;
     private ImageButton btn_call, btn_scan_barcode,btn_pop;
     private EditText et_first_code;
     private String[] datas = {"签到", "分享"};
-
+    private BannerComponent bannerComponent;
+    private int[] images = {R.mipmap.banner, R.mipmap.bannertwo};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -66,10 +87,17 @@ public class HomeFragment extends Fragment {
         ll_9 = view.findViewById(R.id.ll_9);
 
         et_first_code = view.findViewById(R.id.et_first_code);
-
-        btn_scan_barcode = view.findViewById(R.id.btn_scan_barcode);
         btn_pop = view.findViewById(R.id.btn_pop);
         btn_call = view.findViewById(R.id.btn_call);
+        btn_scan_barcode = view.findViewById(R.id.btn_scan_barcode);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.hom_image_viewPager);
+        Indicator indicator = (Indicator) view.findViewById(R.id.banner_indicator);
+        indicator.setScrollBar(new ColorBar(mActivity, mActivity.getResources().getColor(R.color.colorBluePeacock), 0, ScrollBar.Gravity.CENTENT_BACKGROUND));
+        viewPager.setOffscreenPageLimit(2);
+        bannerComponent = new BannerComponent(indicator, viewPager, false);
+        bannerComponent.setAdapter(adapter);
+        bannerComponent.setAutoPlayTime(2500);
+
 
         initEvent();
 
@@ -218,5 +246,37 @@ public class HomeFragment extends Fragment {
         });
 
     }
+    private IndicatorViewPager.IndicatorViewPagerAdapter adapter = new IndicatorViewPager.IndicatorViewPagerAdapter() {
+
+        @Override
+        public View getViewForTab(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = new View(container.getContext());
+            }
+            return convertView;
+        }
+
+        @Override
+        public View getViewForPage(int position, View convertView, ViewGroup container) {
+            if (convertView == null) {
+                convertView = new ImageView(mActivity);
+                convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            }
+            ImageView imageView = (ImageView) convertView;
+            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setImageResource(images[position]);
+            return convertView;
+        }
+
+//        @Override
+//        public int getItemPosition(Object object) {
+//            return RecyclingPagerAdapter.POSITION_NONE;
+//        }
+
+        @Override
+        public int getCount() {
+            return images.length;
+        }
+    };
 
 }
