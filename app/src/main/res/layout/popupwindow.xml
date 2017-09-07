@@ -1,15 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:background="@color/transparent_grey"
+              android:gravity="right"
+              android:orientation="vertical" >
 
-              android:background="@drawable/popopwindow_bg"
-              android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/btn_sign"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="15.0dp"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
 
-    <ListView
-        android:id="@+id/lsvMore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
-    <!--      android:divider="@null"-->
+        <!--  <ImageView
+              android:layout_width="@dimen/normal_et_height"
+              android:layout_height="@dimen/normal_et_height"
+              android:contentDescription="@string/app_name"
+              android:src="@drawable/change_user" />-->
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="签到"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
+
+    <View
+
+        android:background="@color/colorBlackGray"
+        android:layout_width="130dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="15.0dip"
+        android:layout_marginRight="15.0dip" />
+
+    <LinearLayout
+        android:id="@+id/btn_share"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="15.0dip"
+        android:background="@null"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="分享"
+            android:textColor="@color/colorWhite" />
+    </LinearLayout>
+
 
 </LinearLayout>
