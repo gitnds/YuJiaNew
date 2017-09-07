@@ -30,7 +30,7 @@ import java.util.Map;
  * Created by Administrator on 2017/8/22.
  */
 
-public class SiteChoiceActivity extends BaseActivity {
+public class SiteChoiceActivity extends BaseActivity implements View.OnClickListener {
     private LinearLayout ll_return;
     private TextView tv_title, tv_hot, tv_city, tv_site;
     private RecyclerView choice_recycler, choice_hot_recycler;
@@ -40,6 +40,59 @@ public class SiteChoiceActivity extends BaseActivity {
     private MyHotAdapter hotmyrecycleradapter;
     private CityAdapter cityAdapter;
     private CountAdapter countAdapter;
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_hot:
+                choice_recycler.setAdapter(mmyrecycleradapter);//设置适配器
+                break;
+            case R.id.tv_city:
+                cityAdapter = new CityAdapter(SiteChoiceActivity.this, bean.getData().get(clickShengPosition).getCity());
+                choice_recycler.setAdapter(cityAdapter);//设置适配器
+                cityAdapter.setOnItemClieckLinster(new OnItemClieckLinster() {
+                    @Override
+                    public void onItemClickListener(View view, int pos, String name) {
+                        Toast.makeText(SiteChoiceActivity.this, "click" + pos, Toast.LENGTH_SHORT).show();
+                        countAdapter = new CountAdapter(SiteChoiceActivity.this, bean.getData().get(clickShengPosition).getCity().get(pos).getCounty());
+                        choice_recycler.setAdapter(countAdapter);//设置适配器
+                        clickCityPosition = pos;
+                        tv_site.setText("选择区县");
+                        tv_hot.setVisibility(View.VISIBLE);
+                        tv_hot.setText(bean.getData().get(clickShengPosition).getName());
+                        tv_city.setVisibility(View.VISIBLE);
+                        tv_city.setText(bean.getData().get(clickShengPosition).getCity().get(pos).getName());
+                        choice_hot_recycler.setVisibility(View.GONE);
+                        countAdapter.setOnItemClieckLinster(new OnItemClieckLinster() {
+                            @Override
+                            public void onItemClickListener(View view, int pos, String name) {
+                                Intent intent = new Intent(SiteChoiceActivity.this, SiteActivity.class);
+                                //  Bundle b=new Bundle();
+                                //  b.putStringArray("name",  new String[]{bean.getData().get(clickShengPosition).getName(),bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getName(),bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getCounty().get(pos)});
+                                intent.putExtra("name", bean.getData().get(clickShengPosition).getName() + "@" + bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getName() + "@" + bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getCounty().get(pos));
+                                setResult(10, intent);
+                                finish();
+                            }
+
+                            @Override
+                            public void onItemLongClickListener(View view, int pos) {
+                                Toast.makeText(SiteChoiceActivity.this, "long click" + pos, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+
+                    @Override
+                    public void onItemLongClickListener(View view, int pos) {
+                        Toast.makeText(SiteChoiceActivity.this, "long click" + pos, Toast.LENGTH_SHORT).show();
+                    }
+                });
+                break;
+            case R.id.tv_site:
+                break;
+
+        }
+    }
+
     CityBean bean;
     int clickShengPosition;
     int clickCityPosition;
@@ -152,10 +205,10 @@ public class SiteChoiceActivity extends BaseActivity {
                         countAdapter.setOnItemClieckLinster(new OnItemClieckLinster() {
                             @Override
                             public void onItemClickListener(View view, int pos, String name) {
-                                Intent intent = new Intent(SiteChoiceActivity.this,SiteActivity.class);
-                              //  Bundle b=new Bundle();
-                              //  b.putStringArray("name",  new String[]{bean.getData().get(clickShengPosition).getName(),bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getName(),bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getCounty().get(pos)});
-                                intent.putExtra("name",bean.getData().get(clickShengPosition).getName()+"@"+bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getName()+"@"+bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getCounty().get(pos));
+                                Intent intent = new Intent(SiteChoiceActivity.this, SiteActivity.class);
+                                //  Bundle b=new Bundle();
+                                //  b.putStringArray("name",  new String[]{bean.getData().get(clickShengPosition).getName(),bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getName(),bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getCounty().get(pos)});
+                                intent.putExtra("name", bean.getData().get(clickShengPosition).getName() + "@" + bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getName() + "@" + bean.getData().get(clickShengPosition).getCity().get(clickCityPosition).getCounty().get(pos));
                                 setResult(10, intent);
                                 finish();
                             }
@@ -165,7 +218,7 @@ public class SiteChoiceActivity extends BaseActivity {
                                 Toast.makeText(SiteChoiceActivity.this, "long click" + pos, Toast.LENGTH_SHORT).show();
                             }
                         });
-                }
+                    }
 
                     @Override
                     public void onItemLongClickListener(View view, int pos) {
@@ -175,9 +228,8 @@ public class SiteChoiceActivity extends BaseActivity {
                 clickShengPosition = pos;
                 choice_recycler.setAdapter(cityAdapter);//设置适配器
                 tv_site.setText("选择城市");
-                tv_hot.setVisibility(View.GONE);
-                tv_city.setVisibility(View.VISIBLE);
-                tv_city.setText(bean.getData().get(pos).getName());
+                tv_city.setVisibility(View.GONE);
+                tv_hot.setText(bean.getData().get(pos).getName());
                 choice_hot_recycler.setVisibility(View.GONE);
             }
 
@@ -187,7 +239,8 @@ public class SiteChoiceActivity extends BaseActivity {
                 Toast.makeText(SiteChoiceActivity.this, "long click" + pos, Toast.LENGTH_SHORT).show();
             }
         });
-
+        tv_hot.setOnClickListener(this);
+        tv_city.setOnClickListener(this);
 
     }
 
