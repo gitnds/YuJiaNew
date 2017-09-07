@@ -2,7 +2,6 @@ package com.strong.yujiaapp.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,12 +9,10 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -41,6 +38,7 @@ import com.strong.yujiaapp.controls.MyDialog;
 import zxing.activity.CaptureActivity;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
 
 /**
@@ -64,12 +62,14 @@ public class HomeFragment extends Fragment {
     }
 
     private RelativeLayout ll_1;
-    private LinearLayout ll_2, ll_3, ll_4, ll_5, ll_6, ll_7, ll_8, ll_9;
-    private ImageButton btn_call, btn_scan_barcode,btn_pop;
+    private LinearLayout ll_2, ll_3, ll_4, ll_5, ll_6, ll_7, ll_8, ll_9, btn_sign, btn_share;
+    private ImageButton btn_call, btn_scan_barcode, btn_pop;
     private EditText et_first_code;
+    PopupWindow popupWindow;
     private String[] datas = {"签到", "分享"};
     private BannerComponent bannerComponent;
     private int[] images = {R.mipmap.banner, R.mipmap.bannertwo};
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -85,6 +85,8 @@ public class HomeFragment extends Fragment {
         ll_7 = view.findViewById(R.id.ll_7);
         ll_8 = view.findViewById(R.id.ll_8);
         ll_9 = view.findViewById(R.id.ll_9);
+        btn_sign = view.findViewById(R.id.btn_sign);
+        btn_share = view.findViewById(R.id.btn_share);
 
         et_first_code = view.findViewById(R.id.et_first_code);
         btn_pop = view.findViewById(R.id.btn_pop);
@@ -155,28 +157,25 @@ public class HomeFragment extends Fragment {
                     break;
                 case R.id.btn_pop:
 
-                    // TODO: 2016/5/17 构建一个popupwindow的布局
-                    View popupView = mActivity.getLayoutInflater().inflate(R.layout.popupwindow, null);
-
-                    // TODO: 2016/5/17 为了演示效果，简单的设置了一些数据，实际中大家自己设置数据即可，相信大家都会。
-                    ListView lsvMore = (ListView) popupView.findViewById(R.id.lsvMore);
-                    lsvMore.setAdapter(new ArrayAdapter<String>(mActivity, android.R.layout.simple_list_item_1, datas));
-
-                    // TODO: 2016/5/17 创建PopupWindow对象，指定宽度和高度
-                    PopupWindow window = new PopupWindow(popupView, 200, 200);
-                    // TODO: 2016/5/17 设置动画
-                    window.setAnimationStyle(R.style.popup_window_anim);
-                    // TODO: 2016/5/17 设置背景颜色
-                    window.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#F8F8F8")));
-                    // TODO: 2016/5/17 设置可以获取焦点
-                    window.setFocusable(true);
-                    // TODO: 2016/5/17 设置可以触摸弹出框以外的区域
-                    window.setOutsideTouchable(true);
-                    // TODO：更新popupwindow的状态
-                    window.update();
-                    // TODO: 2016/5/17 以下拉的方式显示，并且可以设置显示的位置
-                    window.showAsDropDown(btn_pop, 0, 20);
-
+                    LayoutInflater inflater1 = (LayoutInflater) mActivity.getSystemService(LAYOUT_INFLATER_SERVICE);
+                    LinearLayout popup_main = (LinearLayout) inflater1.inflate(
+                            R.layout.popupwindow, null);
+                    // 初始化popupwindow，绑定显示view，设置该view的宽度/高度
+                    popupWindow = new PopupWindow(popup_main,
+                            LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT,
+                            true);
+                    ColorDrawable dw = new ColorDrawable(getResources().getColor(R.color.transparent));
+                    popupWindow.setBackgroundDrawable(dw);
+                    popupWindow.setAnimationStyle(R.style.popup_window_anim);
+                    popupWindow.update();
+                    // popupWindow.setBackgroundDrawable(new BitmapDrawable());
+                    popupWindow.showAsDropDown(btn_pop);
+                    btn_share = (LinearLayout) popup_main
+                            .findViewById(R.id.btn_share);
+                    btn_sign = (LinearLayout) popup_main
+                            .findViewById(R.id.btn_sign);
+                    btn_share.setOnClickListener(menuClickListener);
+                    btn_sign.setOnClickListener(menuClickListener);
 
                     break;
                 default:
@@ -184,6 +183,25 @@ public class HomeFragment extends Fragment {
             }
         }
     }
+
+    /**
+     * menu分类
+     */
+    View.OnClickListener menuClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            popupWindow.dismiss();
+            switch (v.getId()) {
+                case R.id.btn_sign:
+                    Toast.makeText(mActivity, "签到！！", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.btn_share:
+                    Toast.makeText(mActivity, "分享！！", Toast.LENGTH_SHORT).show();
+                    break;
+
+            }
+        }
+    };
 
     public void initEvent() {
 
@@ -217,12 +235,12 @@ public class HomeFragment extends Fragment {
 
     private void showLoginDialog() {
 
-        View view = getView().inflate(mActivity,R.layout.dialog_ask, null);
+        View view = getView().inflate(mActivity, R.layout.dialog_ask, null);
         final TextView tvTitle = (TextView) view.findViewById(R.id.tvTitle);
         tvTitle.setText("删除地址");
         final TextView btnYes = (TextView) view.findViewById(R.id.f_quchecbutton_btn_queding);
         final TextView btlNo = (TextView) view.findViewById(R.id.f_quchecbutton_btn_quxiao);
-        final MyDialog builder = new MyDialog(mActivity,0,0,view,R.style.DialogTheme);
+        final MyDialog builder = new MyDialog(mActivity, 0, 0, view, R.style.DialogTheme);
 
         builder.setCancelable(false);
         builder.show();
@@ -246,6 +264,7 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
     private IndicatorViewPager.IndicatorViewPagerAdapter adapter = new IndicatorViewPager.IndicatorViewPagerAdapter() {
 
         @Override
