@@ -67,33 +67,23 @@
                     android:background="@color/colorGray">
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/ll_mall"
+                <TextView
                     android:layout_width="match_parent"
-                    android:orientation="vertical"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    android:text="55"
+                    android:textColor="@color/colorBlack"/>
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="55"
-                        android:textColor="@color/colorBlack"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@color/colorWhite"
-                        android:gravity="center"
-                        android:paddingBottom="5dp"
-                        android:text="积分"
-                        android:textColor="@color/colorBlackGray"/>
-
-                </LinearLayout>
-
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorWhite"
+                    android:gravity="center"
+                    android:paddingBottom="5dp"
+                    android:text="积分"
+                    android:textColor="@color/colorBlackGray"/>
             </LinearLayout>
 
 

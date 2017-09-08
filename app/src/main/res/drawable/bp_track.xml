@@ -4,7 +4,7 @@
     <!-- 高度40 -->
     <size android:height="30dp"/>
     <!-- 圆角弧度 20 -->
-    <corners android:radius="30dp"/>
+    <corners android:radius="15dp"/>
     <!-- 变化率 -->
     <gradient
         android:endColor="@color/colorBluePeacock"

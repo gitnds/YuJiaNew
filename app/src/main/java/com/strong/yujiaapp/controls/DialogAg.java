@@ -95,6 +95,7 @@ public class DialogAg {
 
         View view = View.inflate(context, R.layout.dialog_list, null);
         final ListView listView = (ListView) view.findViewById(R.id.goods_listview);
+        final TextView tv_line = (TextView) view.findViewById(R.id.tv_line);
         listView.setAdapter(new ArrayAdapter<String>(context, R.layout.dialog_list_item, R.id.item_dialog, list));
 
         final Dialog dialog = new Dialog(context, R.style.DialogTheme);
