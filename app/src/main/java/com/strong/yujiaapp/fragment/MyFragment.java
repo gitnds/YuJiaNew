@@ -55,7 +55,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     public void initData() {
 
-        tv_title.setText("我");
+        tv_title.setText("138****8989");
     }
 
     public void initEvent() {
