@@ -31,32 +31,25 @@
 
 
     <LinearLayout
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <RelativeLayout
+
+        <LinearLayout
             android:id="@+id/ll_1"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:layout_height="match_parent">
+            style="@style/HomeF_ll_style">
 
             <ImageView
-                android:id="@+id/asd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@mipmap/order_red"/>
+                android:src="@mipmap/order"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorBlack"
-                android:gravity="center"
-                android:paddingTop="10dp"
-                android:layout_below="@+id/asd"
+                style="@style/HomeF_tv_style"
                 android:text="我要下单"/>
-        </RelativeLayout>
+        </LinearLayout>
 
 
         <LinearLayout
@@ -64,8 +57,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/premium"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -77,8 +71,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/site"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -87,6 +82,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:paddingTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -96,8 +92,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/price"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -109,8 +106,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/record"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -122,8 +120,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/record"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -133,6 +132,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:paddingTop="15dp"
         android:layout_height="0dp"
         android:layout_weight="1">
 
@@ -141,8 +141,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/server"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -154,8 +155,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/online_service"/>
 
             <TextView
                 style="@style/HomeF_tv_style"
@@ -167,8 +169,9 @@
             style="@style/HomeF_ll_style">
 
             <ImageView
-                style="@style/HomeF_iv_style"
-                android:src="@mipmap/ic_launcher"/>
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/claims"/>
 
             <TextView
                 style="@style/HomeF_tv_style"

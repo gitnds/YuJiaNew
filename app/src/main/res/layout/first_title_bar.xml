@@ -38,7 +38,7 @@
         android:layout_gravity="center"
         android:background="@null"
         android:layout_weight="1"
-        android:src="@mipmap/menu"/>
+        android:src="@mipmap/menu_moreoverflow"/>
 
 
 </LinearLayout>

@@ -7,7 +7,7 @@
     android:background="@color/colorALittleGray"
     android:orientation="vertical">
 
-    <include layout="@layout/title_bar"/>
+    <include layout="@layout/title_bar_my"/>
 
     <ScrollView
         android:layout_width="fill_parent"
@@ -19,6 +19,39 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/colorBluePeacock"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/login_avatar"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:paddingTop="10dp"
+                    android:gravity="center"
+                    android:textSize="25dp"
+                    android:layout_height="wrap_content"
+                    android:text="110"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:paddingBottom="10dp"
+                    android:layout_height="wrap_content"
+                    android:text="积分"/>
+
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,7 +69,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="15dp"
-                        android:src="@mipmap/portrait"/>
+                        android:src="@mipmap/login_avatar"/>
 
                     <TextView
                         android:layout_width="wrap_content"
