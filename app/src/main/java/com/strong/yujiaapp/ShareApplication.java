@@ -1,10 +1,11 @@
 package com.strong.yujiaapp;
+
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
-import android.app.Application;
 import android.content.Context;
 import android.util.Log;
 
+import com.mob.MobApplication;
 import com.xiaomi.channel.commonutils.logger.LoggerInterface;
 import com.xiaomi.mipush.sdk.Logger;
 import com.xiaomi.mipush.sdk.MiPushClient;
@@ -17,13 +18,14 @@ import java.util.List;
  * @author Administrator
  * 
  */
-public class ShareApplication extends Application {
+public class ShareApplication extends MobApplication {
 	public static final String APP_ID = "2882303761517613670";
     public static final String APP_KEY = "5761761365670";
     public static final String TAG = "com.strong.yujiaapp";
 	@Override
 	public void onCreate() {
 		super.onCreate();
+        // 创建EventHandler对象
 
         //初始化push推送服务
         if(shouldInit()) {
@@ -48,7 +50,9 @@ public class ShareApplication extends Application {
             }
         };
         Logger.setLogger(this, newLogger);
+
     }
+
 
     private boolean shouldInit() {
         ActivityManager am = ((ActivityManager) getSystemService(Context.ACTIVITY_SERVICE));
