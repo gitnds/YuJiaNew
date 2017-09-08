@@ -22,7 +22,7 @@ import java.util.HashMap;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private Button btn_login;
+    private Button btn_login,btn_register;
     private EditText et_Account, et_Password;
 
     @Override
@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void initView() {
         btn_login = (Button) findViewById(R.id.btn_login);
+        btn_register = (Button) findViewById(R.id.btn_register);
         //设置透明度
         /*View v = findViewById(R.id.btn_login);
         v.getBackground().setAlpha(100);*/
@@ -48,6 +49,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+              /*  Thread threadRun = new Thread(login);
+                threadRun.start();*/
+
+            }
+        });
+        btn_register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(LoginActivity.this, Register.class);
                 startActivity(intent);
               /*  Thread threadRun = new Thread(login);
                 threadRun.start();*/
