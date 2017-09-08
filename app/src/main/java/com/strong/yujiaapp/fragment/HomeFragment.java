@@ -14,7 +14,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,8 +60,7 @@ public class HomeFragment extends Fragment {
         bannerComponent.startAutoPlay();
     }
 
-    private RelativeLayout ll_1;
-    private LinearLayout ll_2, ll_3, ll_4, ll_5, ll_6, ll_7, ll_8, ll_9, btn_sign, btn_share;
+    private LinearLayout ll_1,ll_2, ll_3, ll_4, ll_5, ll_6, ll_7, ll_8, ll_9, btn_sign, btn_share;
     private ImageButton btn_call, btn_scan_barcode, btn_pop;
     private EditText et_first_code;
     PopupWindow popupWindow;
@@ -282,7 +280,7 @@ public class HomeFragment extends Fragment {
                 convertView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
             }
             ImageView imageView = (ImageView) convertView;
-            imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setImageResource(images[position]);
             return convertView;
         }
