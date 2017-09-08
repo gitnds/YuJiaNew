@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorALittleGray"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+    <include layout="@layout/title_bar" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorALittleGray" />
+
+    <TextView style="@style/style_horizontal_line_black" />
+
+    <LinearLayout style="@style/LinearLayoutStyleHorizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/et_phone_number"
+            style="@style/EditTextStyle"
+            android:hint="请输入您的手机号"
+            android:inputType="text"
+            android:maxLength="15"></EditText>
+    </LinearLayout>
+
+    <TextView style="@style/style_horizontal_line_black" />
+
+    <LinearLayout style="@style/LinearLayoutStyleHorizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <EditText
+            android:id="@+id/et_send_sms"
+            style="@style/EditTextStyle"
+            android:hint="请点击获取验证码"
+            android:inputType="text"
+            android:maxLength="15"></EditText>
+        <Button
+            android:id="@+id/bt_get_sms"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="点击获取验证码"/>
+    </LinearLayout>
+
+    <TextView style="@style/style_horizontal_line_black" />
+
+    <LinearLayout style="@style/LinearLayoutStyleHorizontal">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp" />
+
+        <EditText
+            style="@style/EditTextStyle"
+            android:hint="请设置您的密码"
+            android:inputType="text"
+            android:maxLength="15"></EditText>
+    </LinearLayout>
+
+    <TextView style="@style/style_horizontal_line_black" />
+
+    <LinearLayout style="@style/LinearLayoutStyleHorizontal">
+
+        <CheckBox
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginLeft="5dp"
+            android:button="@null"
+            android:background="@drawable/btn_register"
+            android:checked="true"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/agree" />
+
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/xieyi"
+            android:textColor="@color/colorBluePeacock" />
+        <TextView
+            style="@style/TextViewStyle"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/agree" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_register_sms"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="25dp"
+        android:background="@color/colorBluePeacock"
+        android:padding="10dp"
+        android:text="@string/register" />
+</LinearLayout>
