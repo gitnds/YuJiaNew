@@ -73,19 +73,21 @@
         <CheckBox
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginLeft="5dp"
             android:button="@null"
             android:background="@drawable/btn_register"
             android:checked="true"
+            android:layout_margin="5dp"
             android:layout_gravity="center_vertical"/>
 
         <TextView
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/agree" />
+            android:text="@string/agree"
+            android:layout_margin="5dp"/>
 
         <TextView
+            android:id="@+id/tv_register_agree"
             style="@style/TextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,7 +98,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/agree" />
+            />
     </LinearLayout>
 
     <Button
