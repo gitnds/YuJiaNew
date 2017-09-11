@@ -11,38 +11,87 @@
 
     <include layout="@layout/title_bar"/>
 
-    <TextView
-        android:layout_margin="15dp"
-        android:padding="10dp"
+    <EditText
+        android:id="@+id/et_search"
         android:layout_width="match_parent"
-        android:background="@color/colorWhite"
         android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:inputType="number"
+        android:background="@color/colorWhite"
         android:gravity="center"
         android:hint="请输入运单号"
-        android:textColorHint="@color/colorGray"
+        android:imeOptions="actionSearch"
+        android:singleLine="true"
+        android:padding="10dp"
+        android:textColor="@color/colorBlack"
+        android:textColorHint="@color/colorGray"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorBlack"></LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:imeOptions="actionSearch"
+        android:padding="15dp"
+        android:singleLine="true"
+        android:text="查询历史"
         android:textColor="@color/colorBlack"/>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="@color/colorBlack"
-        android:layout_height="0.5dp"></LinearLayout>
+        android:layout_height="0.5dp"
+        android:background="@color/colorBlack"></LinearLayout>
 
-
-
-    <TextView
-        android:padding="15dp"
+    <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/colorBlack"
-        android:text="查询历史"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+
+                <com.strong.yujiaapp.controls.MyListView
+                    android:id="@+id/listView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.strong.yujiaapp.controls.MyListView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_clear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/colorWhite"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="清空搜索记录"
+                    android:textColor="@color/colorBluePeacock"
+                    android:textSize="15dp"/>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="@color/colorBlack"
-        android:layout_height="0.5dp"></LinearLayout>
+            </LinearLayout>
 
+        </LinearLayout>
 
-
+    </ScrollView>
 
 </LinearLayout>

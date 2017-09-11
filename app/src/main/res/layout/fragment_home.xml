@@ -43,7 +43,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/order"/>
 
             <TextView
@@ -58,7 +58,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/premium"/>
 
             <TextView
@@ -72,7 +72,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/site"/>
 
             <TextView
@@ -93,7 +93,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/price"/>
 
             <TextView
@@ -107,7 +107,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/record"/>
 
             <TextView
@@ -121,7 +121,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/record"/>
 
             <TextView
@@ -142,7 +142,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/server"/>
 
             <TextView
@@ -156,7 +156,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/online_service"/>
 
             <TextView
@@ -170,7 +170,7 @@
 
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
                 android:src="@mipmap/claims"/>
 
             <TextView

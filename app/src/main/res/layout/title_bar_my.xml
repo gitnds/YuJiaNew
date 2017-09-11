@@ -19,8 +19,7 @@
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:src="@mipmap/back"/>
+            android:layout_marginLeft="10dp"/>
     </LinearLayout>
 
 
