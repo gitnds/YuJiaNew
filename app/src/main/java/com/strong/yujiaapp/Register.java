@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.strong.yujiaapp.activity.RegistAgree;
 import com.strong.yujiaapp.activity.SiteChoiceActivity;
 import com.strong.yujiaapp.base.BaseActivity;
 
@@ -19,7 +20,7 @@ import cn.smssdk.SMSSDK;
 public class Register extends BaseActivity {
     private LinearLayout ll_return;
     private Button btn_register_sms, bt_get_sms;
-    private TextView tv_title;
+    private TextView tv_title,tv_register_agree;
     private EditText et_phone_number, et_send_sms;
     EventHandler eventHandler;
     String myPhone;
@@ -38,6 +39,7 @@ public class Register extends BaseActivity {
         ll_return = (LinearLayout) findViewById(R.id.ll_return);
         btn_register_sms = (Button) findViewById(R.id.btn_register_sms);
         tv_title = (TextView) findViewById(R.id.tv_title);
+        tv_register_agree = (TextView) findViewById(R.id.tv_register_agree);
         bt_get_sms = (Button) findViewById(R.id.bt_get_sms);
         et_phone_number = (EditText) findViewById(R.id.et_phone_number);
         et_send_sms = (EditText) findViewById(R.id.et_send_sms);
@@ -50,7 +52,7 @@ public class Register extends BaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(Register.this, msg, Toast.LENGTH_SHORT).show();
+                        //    Toast.makeText(Register.this, msg, Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else {
@@ -104,6 +106,14 @@ public class Register extends BaseActivity {
                 SMSSDK.getVerificationCode("86", myPhone);
                 bt_get_sms.setEnabled(false);
                 timer.start();
+            }
+        });
+        tv_register_agree.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(Register.this, RegistAgree.class);
+                startActivityForResult(intent, 1);
             }
         });
     }
