@@ -4,7 +4,8 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorAr">#E94A5D</color>
-    <color name="colorBluePeacock">#48D1CC</color>
+    <!--<color name="colorBluePeacock">#48D1CC</color>-->
+    <color name="colorBluePeacock">#4451A6</color>
     <color name="colorBlack">#000000</color>
     <color name="transparent_grey">#b0000000</color>
     <color name="colorBlack2">#404040</color>
