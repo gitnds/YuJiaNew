@@ -44,9 +44,6 @@ public class CargoActivity extends BaseActivity {
         initView();
         initData();
         initEvent();
-
-        // 第一次进入查询所有的历史记录
-        queryData("");
     }
 
     public void initView(){
@@ -62,6 +59,8 @@ public class CargoActivity extends BaseActivity {
     public void initData(){
 
         tv_title.setText("货物跟踪");
+        // 第一次进入查询所有的历史记录
+        queryData("");
     }
     public void initEvent(){
 
@@ -128,9 +127,9 @@ public class CargoActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = (TextView) view.findViewById(R.id.text1);
-                String name = textView.getText().toString();
-                et_search.setText(name);
-                Toast.makeText(CargoActivity.this, name, Toast.LENGTH_SHORT).show();
+                String coderecord = textView.getText().toString();
+                et_search.setText(coderecord);
+                Toast.makeText(CargoActivity.this, coderecord, Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -140,7 +139,7 @@ public class CargoActivity extends BaseActivity {
      */
     private void insertData(String tempName) {
         db = helper.getWritableDatabase();
-        db.execSQL("insert into records(name) values('" + tempName + "')");
+        db.execSQL("insert into records(coderecord) values('" + tempName + "')");
         db.close();
     }
 
@@ -149,9 +148,9 @@ public class CargoActivity extends BaseActivity {
      */
     private void queryData(String tempName) {
         Cursor cursor = helper.getReadableDatabase().rawQuery(
-                "select id as _id,name from records where name like '%" + tempName + "%' order by id desc ", null);
+                "select id as _id,coderecord from records where coderecord like '%" + tempName + "%' order by id desc ", null);
         // 创建adapter适配器对象
-        adapter = new SimpleCursorAdapter(this, R.layout.cargo_list_item, cursor, new String[] { "name" },
+        adapter = new SimpleCursorAdapter(this, R.layout.cargo_list_item, cursor, new String[] { "coderecord" },
                 new int[] { R.id.text1 }, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         // 设置适配器
         listView.setAdapter(adapter);
@@ -162,7 +161,7 @@ public class CargoActivity extends BaseActivity {
      */
     private boolean hasData(String tempName) {
         Cursor cursor = helper.getReadableDatabase().rawQuery(
-                "select id as _id,name from records where name =?", new String[]{tempName});
+                "select id as _id,coderecord from records where coderecord =?", new String[]{tempName});
         //判断是否有下一个
         return cursor.moveToNext();
     }
