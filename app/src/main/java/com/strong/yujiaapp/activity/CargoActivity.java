@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -28,7 +29,7 @@ import com.strong.yujiaapp.utils.RecordSQLiteOpenHelper;
  */
 
 public class CargoActivity extends BaseActivity {
-    private LinearLayout ll_return,ll_clear;
+    private LinearLayout ll_return, ll_clear;
     private TextView tv_title;
     private EditText et_search;
     private TextView tv_tip;
@@ -36,6 +37,7 @@ public class CargoActivity extends BaseActivity {
     private RecordSQLiteOpenHelper helper = new RecordSQLiteOpenHelper(this);
     private SQLiteDatabase db;
     private BaseAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,9 +46,11 @@ public class CargoActivity extends BaseActivity {
         initView();
         initData();
         initEvent();
+
+
     }
 
-    public void initView(){
+    public void initView() {
 
         ll_return = (LinearLayout) findViewById(R.id.ll_return);
         tv_title = (TextView) findViewById(R.id.tv_title);
@@ -54,15 +58,37 @@ public class CargoActivity extends BaseActivity {
         tv_tip = (TextView) findViewById(R.id.tv_tip);
         listView = (com.strong.yujiaapp.controls.MyListView) findViewById(R.id.listView);
         ll_clear = (LinearLayout) findViewById(R.id.ll_clear);
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                // queryData(et_search.getText().toString().trim());
+                adapter.notifyDataSetChanged();
+                Button button = view.findViewById(R.id.bt_delete);
+                TextView textView = view.findViewById(R.id.text1);
+                button.setVisibility(View.VISIBLE);
+                final String deleteContent = textView.getText().toString().trim();
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        int id = getDeleteId(deleteContent);
+                        deleteDataItem(String.valueOf(id));
+                    }
+                });
+
+                return true;
+            }
+        });
 
     }
-    public void initData(){
+
+    public void initData() {
 
         tv_title.setText("货物跟踪");
         // 第一次进入查询所有的历史记录
         queryData("");
     }
-    public void initEvent(){
+
+    public void initEvent() {
 
         ll_return.setOnClickListener(returnClickListener);
 
@@ -87,7 +113,7 @@ public class CargoActivity extends BaseActivity {
                     boolean hasData = hasData(et_search.getText().toString().trim());
                     if (!hasData) {
                         insertData(et_search.getText().toString().trim());
-                        queryData("");
+                        queryData(et_search.getText().toString().trim());
                     }
 
                     Toast.makeText(CargoActivity.this, "搜索搜索!", Toast.LENGTH_SHORT).show();
@@ -127,19 +153,20 @@ public class CargoActivity extends BaseActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView textView = (TextView) view.findViewById(R.id.text1);
-                String coderecord = textView.getText().toString();
-                et_search.setText(coderecord);
-                Toast.makeText(CargoActivity.this, coderecord, Toast.LENGTH_SHORT).show();
+                String name = textView.getText().toString();
+                et_search.setText(name);
+                Toast.makeText(CargoActivity.this, name, Toast.LENGTH_SHORT).show();
 
             }
         });
     }
+
     /**
      * 插入数据
      */
     private void insertData(String tempName) {
         db = helper.getWritableDatabase();
-        db.execSQL("insert into records(coderecord) values('" + tempName + "')");
+        db.execSQL("insert into records(name) values('" + tempName + "')");
         db.close();
     }
 
@@ -148,22 +175,36 @@ public class CargoActivity extends BaseActivity {
      */
     private void queryData(String tempName) {
         Cursor cursor = helper.getReadableDatabase().rawQuery(
-                "select id as _id,coderecord from records where coderecord like '%" + tempName + "%' order by id desc ", null);
+                "select id as _id,name from records where name like '%" + tempName + "%' order by id desc ", null);
         // 创建adapter适配器对象
-        adapter = new SimpleCursorAdapter(this, R.layout.cargo_list_item, cursor, new String[] { "coderecord" },
-                new int[] { R.id.text1 }, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+        adapter = new SimpleCursorAdapter(this, R.layout.cargo_list_item, cursor, new String[]{"name"},
+                new int[]{R.id.text1}, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
         // 设置适配器
         listView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
+
     /**
      * 检查数据库中是否已经有该条记录
      */
     private boolean hasData(String tempName) {
         Cursor cursor = helper.getReadableDatabase().rawQuery(
-                "select id as _id,coderecord from records where coderecord =?", new String[]{tempName});
+                "select id as _id,name from records where name =?", new String[]{tempName});
         //判断是否有下一个
         return cursor.moveToNext();
+    }
+
+    /**
+     * 检查数据库中查询内容对应的自增长ID多少
+     */
+    private int getDeleteId(String tempName) {
+        int deleteid = 0;
+        Cursor cursor = helper.getReadableDatabase().rawQuery(
+                "select id as _id,name from records where name =?", new String[]{tempName});
+        //判断是否有下一个
+        cursor.moveToFirst();
+        deleteid = cursor.getInt(cursor.getColumnIndex("_id"));
+        return deleteid;
     }
 
     /**
@@ -172,6 +213,16 @@ public class CargoActivity extends BaseActivity {
     private void deleteData() {
         db = helper.getWritableDatabase();
         db.execSQL("delete from records");
+        db.close();
+    }
+
+    /**
+     * 清空数据
+     */
+    private void deleteDataItem(String ID) {
+        db = helper.getWritableDatabase();
+        db.execSQL("delete from records where id =?", new String[]{ID});
+        queryData(et_search.getText().toString().trim());
         db.close();
     }
 }
