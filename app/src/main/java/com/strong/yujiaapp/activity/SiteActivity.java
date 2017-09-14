@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class SiteActivity extends BaseActivity {
     private RecyclerView rc_history;
     private EditText et_choice_city;
     private List<String> hData;
+    private  ImageView bt_baiduMap;
     String[] array;
 
     @Override
@@ -41,10 +43,10 @@ public class SiteActivity extends BaseActivity {
         ll_return = (LinearLayout) findViewById(R.id.ll_return);
         rc_history = (RecyclerView) findViewById(R.id.rc_history);
         tv_title = (TextView) findViewById(R.id.tv_title);
+        bt_baiduMap = (ImageView) findViewById(R.id.bt_baiduMap);
+        bt_baiduMap.setVisibility(View.VISIBLE);
         tv_title.setText("网点查询");
         et_choice_city = (EditText) findViewById(R.id.et_choice_city);
-
-
 
     }
 
@@ -66,6 +68,14 @@ public class SiteActivity extends BaseActivity {
                 Intent intent = new Intent();
                 intent.setClass(SiteActivity.this, SiteChoiceActivity.class);
                 startActivityForResult(intent, 1);
+            }
+        });
+        bt_baiduMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(SiteActivity.this, BuiduActivity.class);
+                startActivity(intent);
             }
         });
     }

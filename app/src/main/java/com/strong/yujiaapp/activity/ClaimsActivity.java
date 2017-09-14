@@ -50,7 +50,6 @@ public class ClaimsActivity extends BaseActivity implements View.OnClickListener
         initView();
         initData();
         initEvent();
-
     }
 
     public void initView(){
