@@ -54,4 +54,9 @@ G、承运过程中发生的一切间接损失（包括但不限于对所托运�
               \n&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;应托运人要求，承运人已做了相应条款的说明，托运人对本协议条款的含义及相应的法律后果已全部通过，托运人完全出于真实意思表示签署的本协议。
 </string>
     <string name="title_activity_service_detail">ServiceDetail</string>
+    <string name="title_activity_contact">ContactActivity</string>
+    <string name="title_activity_buidu">BuiduActivity</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
