@@ -30,7 +30,6 @@ public class BuiduActivity extends FragmentActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.search:
-
                 break;
             case R.id.bt_baiduMap:
                 if (type.equals(NearMapDisplay)) {
@@ -38,7 +37,7 @@ public class BuiduActivity extends FragmentActivity implements View.OnClickListe
                     ft.hide(new MapNearFragment()).add(R.id.fl_map, new MapFragment(), FRAGNEBT_MAP).commit();
                       ;*/
                   /*  */
-                    showFragment(mapFragment);
+                    showFragment(mapFragment,FRAGNEBT_MAP);
                   /*  FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fl_map, mapFragment, FRAGNEBT_MAP).commit();*/
                     type = MapDisplay;
@@ -48,7 +47,7 @@ public class BuiduActivity extends FragmentActivity implements View.OnClickListe
                      */
                    /*
                    */
-                    showFragment(nearFragment);
+                    showFragment(nearFragment,FRAGNEBT_NEAR);
                   /*  FragmentTransaction ft = fm.beginTransaction();
                     ft.replace(R.id.fl_map, nearFragment, FRAGNEBT_NEAR).commit();*/
                     type = NearMapDisplay;
@@ -57,13 +56,13 @@ public class BuiduActivity extends FragmentActivity implements View.OnClickListe
         }
     }
 
-    private void showFragment(Fragment fragment) {
+    private void showFragment(Fragment fragment,String tag) {
         if (currentFragment != fragment) {
             FragmentTransaction transaction = fm.beginTransaction();
             transaction.hide(currentFragment);
             currentFragment = fragment;
             if (!fragment.isAdded()) {
-                transaction.add(R.id.fl_map, fragment).show(fragment).commit();
+                transaction.add(R.id.fl_map, fragment,tag).show(fragment).commit();
             } else {
                 transaction.show(fragment).commit();
             }
@@ -83,7 +82,7 @@ public class BuiduActivity extends FragmentActivity implements View.OnClickListe
         beginTransaction = fm.beginTransaction();
         mapFragment = new MapFragment();
         nearFragment = new MapNearFragment();
-        showFragment(mapFragment);
+        showFragment(mapFragment,FRAGNEBT_MAP);
         beginTransaction.commit();
         tv_title = (TextView) findViewById(R.id.tv_title);
         search = (ImageView) findViewById(R.id.search);
@@ -95,5 +94,14 @@ public class BuiduActivity extends FragmentActivity implements View.OnClickListe
         tv_title.setText("网点查询");
 
     }
-
+    public MapFragment getMapFragement(){
+        FragmentManager fManager = getSupportFragmentManager();
+        MapFragment mapFragment = (MapFragment) fManager.findFragmentByTag(FRAGNEBT_MAP);
+        return mapFragment;
+    }
+    public MapNearFragment getMapNearFragment(){
+        FragmentManager fManager = getSupportFragmentManager();
+        MapNearFragment nearFragment = (MapNearFragment) fManager.findFragmentByTag(FRAGNEBT_NEAR);
+        return nearFragment;
+    }
 }
